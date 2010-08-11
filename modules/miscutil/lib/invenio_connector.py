@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-## $Id: search_engine.py,v 1.324 2008/08/25 14:11:29 jerome Exp $
-
+#
 ## This file is part of CDS Invenio.
 ## Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 CERN.
 ##
@@ -141,14 +140,14 @@ class InvenioConnector:
             self.cached_queries[params + str(parse_results)] = parsed_records
             return parsed_records
         else:
-            # pylint: disable-msg=E1103
+            # pylint: disable=E1103
             # The whole point of the following code is to make sure we can
             # handle two types of variable.
             try:
                 res = results.read()
             except AttributeError:
                 res = results
-            # pylint: enable-msg=E1103
+            # pylint: enable=E1103
 
             if of == "id":
                 if type(res) is str:
