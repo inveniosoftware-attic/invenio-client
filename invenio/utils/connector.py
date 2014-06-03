@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 ## This file is part of Invenio.
-## Copyright (C) 2010, 2011 CERN.
+## Copyright (C) 2010, 2011, 2013 CERN.
 ##
 ## Invenio is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -123,8 +123,7 @@ class InvenioConnector(object):
     Creates an connector to a server running Invenio
     """
 
-    def __init__(self, url=None, user="", password="", login_method="Local",
-                 local_import_path="invenio", insecure_login=False):
+    def __init__(self, url=None, user="", password="", login_method="Local", local_import_path="invenio"):
         """
         Initialize a new instance of the server at given URL.
 
@@ -167,7 +166,7 @@ class InvenioConnector(object):
         self.login_method = login_method
         self.browser = None
         if self.user:
-            if not insecure_login and not self.server_url.startswith('https://'):
+            if not self.server_url.startswith('https://'):
                 raise InvenioConnectorAuthError("You have to use a secure URL (HTTPS) to login")
             if MECHANIZE_AVAILABLE:
                 self._init_browser()
@@ -187,16 +186,21 @@ class InvenioConnector(object):
         self.browser.set_handle_robots(False)
         self.browser.open(self.server_url + "/youraccount/login")
         self.browser.select_form(nr=0)
-        self.browser['p_un'] = self.user
-        self.browser['p_pw'] = self.password
+        try:
+            self.browser['nickname'] = self.user
+            self.browser['password'] = self.password
+        except:
+            self.browser['p_un'] = self.user
+            self.browser['p_pw'] = self.password
         # Set login_method to be writable
         self.browser.form.find_control('login_method').readonly = False
         self.browser['login_method'] = self.login_method
         self.browser.submit()
 
     def _check_credentials(self):
-        if not 'youraccount/logout' in self.browser.response().read():
-            raise InvenioConnectorAuthError("It was not possible to successfully login with the provided credentials")
+        out = self.browser.response().read()
+        if not 'youraccount/logout' in out:
+            raise InvenioConnectorAuthError("It was not possible to successfully login with the provided credentials" + out)
 
     def search(self, read_cache=True, **kwparams):
         """
