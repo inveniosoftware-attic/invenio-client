@@ -84,7 +84,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'requests',
-        'mechanize>0.2.0',
+        'splinter',
         'click',
     ],
     extras_require={

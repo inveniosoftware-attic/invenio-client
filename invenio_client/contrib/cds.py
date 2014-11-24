@@ -23,26 +23,9 @@
 
 """CERN Document Server specific connector."""
 
-import mechanize
+import splinter
 
 from invenio_client import InvenioConnector
-
-
-class _SGMLParserFactory(mechanize.DefaultFactory):
-
-    """Black magic to be able to interact with CERN SSO forms."""
-
-    def __init__(self, i_want_broken_xhtml_support=False):
-        forms_factory = mechanize.FormsFactory(
-            form_parser_class=mechanize.XHTMLCompatibleFormParser)
-        mechanize.Factory.__init__(
-            self,
-            forms_factory=forms_factory,
-            links_factory=mechanize.LinksFactory(),
-            title_factory=mechanize.TitleFactory(),
-            response_type_finder=mechanize._html.ResponseTypeFinder(
-                allow_xhtml=i_want_broken_xhtml_support),
-        )
 
 
 class CDSInvenioConnector(InvenioConnector):
@@ -62,20 +45,16 @@ class CDSInvenioConnector(InvenioConnector):
 
     def _init_browser(self):
         """Update this everytime the CERN SSO login form is refactored."""
-        self.browser = mechanize.Browser(
-            factory=_SGMLParserFactory(i_want_broken_xhtml_support=True))
-        self.browser.set_handle_robots(False)
-        self.browser.open(self.server_url)
-        self.browser.follow_link(text_regex="Sign in")
-        self.browser.select_form(nr=0)
-        self.browser.form[
+        self.browser = splinter.Browser('phantomjs')
+        self.browser.visit(self.server_url)
+        self.browser.find_link_by_partial_text("Sign in").click()
+        self.browser.fill(
             'ctl00$ctl00$NICEMasterPageBodyContent$SiteContentPlaceholder$'
-            'txtFormsLogin'] = self.user
-        self.browser.form[
+            'txtFormsLogin', self.user)
+        self.browser.fill(
             'ctl00$ctl00$NICEMasterPageBodyContent$SiteContentPlaceholder$'
-            'txtFormsPassword'] = self.password
-        self.browser.submit()
-        self.browser.select_form(nr=0)
-        self.browser.submit()
+            'txtFormsPassword', self.password)
+        self.browser.find_by_css('input[type=submit]').click()
+        self.browser.find_by_css('input[type=submit]').click()
 
 __all__ = ('CDSInvenioConnector', )

@@ -48,10 +48,11 @@ FIXME:
 
 from __future__ import print_function
 
-import mechanize
 import os
 import re
 import requests
+import json
+import splinter
 import sys
 import tempfile
 import time
@@ -129,6 +130,7 @@ class InvenioConnector(object):
         self.password = password
         self.login_method = login_method
         self.browser = None
+        self.cookies = {}
         if self.user:
             if not insecure_login and \
                     not self.server_url.startswith('https://'):
@@ -139,29 +141,25 @@ class InvenioConnector(object):
 
     def _init_browser(self):
         """Overide in appropriate way to prepare a logged in browser."""
-        self.browser = mechanize.Browser()
-        self.browser.set_handle_robots(False)
-        self.browser.open(self.server_url + "/youraccount/login")
-        self.browser.select_form(nr=0)
+        self.browser = splinter.Browser('phantomjs')
+        self.browser.visit(self.server_url + "/youraccount/login")
         try:
-            self.browser['nickname'] = self.user
-            self.browser['password'] = self.password
+            self.browser.fill('nickname', self.user)
+            self.browser.fill('password', self.password)
         except:
-            self.browser['p_un'] = self.user
-            self.browser['p_pw'] = self.password
-        # Set login_method to be writable
-        self.browser.form.find_control('login_method').readonly = False
-        self.browser['login_method'] = self.login_method
-        self.browser.submit()
+            self.browser.fill('p_un', self.user)
+            self.browser.fill('p_pw', self.password)
+        self.browser.fill('login_method', self.login_method)
+        self.browser.find_by_css('input[type=submit]').click()
 
     def _check_credentials(self):
-        out = self.browser.response().read()
-        if 'youraccount/logout' not in out:
+        if not len(self.browser.cookies.all()):
             raise InvenioConnectorAuthError(
                 "It was not possible to successfully login with "
-                "the provided credentials" + out)
+                "the provided credentials")
+        self.cookies = self.browser.cookies.all()
 
-    def search(self, read_cache=True, **kwparams):
+    def search(self, read_cache=True, ssl_verify=True, **kwparams):
         """
         Returns records corresponding to the given search query.
 
@@ -174,35 +172,34 @@ class InvenioConnector(object):
             parse_results = True
             of = "xm"
             kwparams['of'] = of
-        params = urllib.urlencode(kwparams, doseq=1)
+        params = kwparams
+        cache_key = (json.dumps(params), parse_results)
 
-        if params + str(parse_results) not in self.cached_queries or \
+        if cache_key not in self.cached_queries or \
                 not read_cache:
-            if self.user:
-                results = self.browser.open(
-                    self.server_url + "/search?" + params)
-            else:
-                results = urllib2.urlopen(
-                    self.server_url + "/search?" + params)
-            if 'youraccount/login' in results.geturl():
+            results = requests.get(self.server_url + "/search",
+                                   params=params, cookies=self.cookies,
+                                   stream=True, verify=ssl_verify)
+            if 'youraccount/login' in results.url:
                 # Current user not able to search collection
                 raise InvenioConnectorAuthError(
                     "You are trying to search a restricted collection. "
                     "Please authenticate yourself.\n")
         else:
-            return self.cached_queries[params + str(parse_results)]
+            return self.cached_queries[cache_key]
 
         if parse_results:
             # FIXME: we should not try to parse if results is string
-            parsed_records = self._parse_results(results, self.cached_records)
-            self.cached_queries[params + str(parse_results)] = parsed_records
+            parsed_records = self._parse_results(results.raw,
+                                                 self.cached_records)
+            self.cached_queries[cache_key] = parsed_records
             return parsed_records
         else:
             # pylint: disable=E1103
             # The whole point of the following code is to make sure we can
             # handle two types of variable.
             try:
-                res = results.read()
+                res = results.content
             except AttributeError:
                 res = results
             # pylint: enable=E1103
@@ -217,8 +214,8 @@ class InvenioConnector(object):
                     res.reverse()
                 except (ValueError, AttributeError):
                     res = []
-            self.cached_queries[params + str(parse_results)] = res
-            return self.cached_queries[params + str(parse_results)]
+            self.cached_queries[cache_key] = res
+            return res
 
     def search_with_retry(self, sleeptime=3.0, retrycount=3, **params):
         """Perform a search given a dictionary of ``search(...)`` parameters.
@@ -265,17 +262,19 @@ class InvenioConnector(object):
                     group_basket = '&category=G'
                 else:
                     group_basket = ''
-                results = self.browser.open(
+                results = requests.get(
                     self.server_url + "/yourbaskets/display?of=xm&bskid=" +
-                    str(bskid) + group_basket)
+                    str(bskid) + group_basket, cookies=self.cookies,
+                    stream=True)
             else:
-                results = urllib2.urlopen(
+                results = requests.get(
                     self.server_url +
-                    "/yourbaskets/display_public?of=xm&bskid=" + str(bskid))
+                    "/yourbaskets/display_public?of=xm&bskid=" + str(bskid),
+                    stream=True)
         else:
             return self.cached_baskets[bskid]
 
-        parsed_records = self._parse_results(results, self.cached_records)
+        parsed_records = self._parse_results(results.raw, self.cached_records)
         self.cached_baskets[bskid] = parsed_records
         return parsed_records
 
