@@ -56,8 +56,6 @@ import splinter
 import sys
 import tempfile
 import time
-import urllib
-import urllib2
 import xml.sax
 
 from requests.exceptions import (ConnectionError, InvalidSchema, InvalidURL,
@@ -234,7 +232,7 @@ class InvenioConnector(object):
             try:
                 results = self.search(**params)
                 break
-            except urllib2.URLError:
+            except requests.exceptions.Timeout:
                 sys.stderr.write("Timeout while searching...Retrying\n")
                 time.sleep(sleeptime)
                 count += 1
@@ -279,37 +277,29 @@ class InvenioConnector(object):
         return parsed_records
 
     def get_record(self, recid, read_cache=True):
-        """
-        Returns the record with given recid
-        """
+        """Return the record with given recid."""
         if recid in self.cached_records or not read_cache:
             return self.cached_records[recid]
         else:
             return self.search(p="recid:" + str(recid))
 
     def upload_marcxml(self, marcxml, mode):
-        """
-        Uploads a record to the server
+        """Upload a record to the server.
 
-        Parameters:
-          marcxml - *str* the XML to upload.
-             mode - *str* the mode to use for the upload.
-                    "-i" insert new records
-                    "-r" replace existing records
-                    "-c" correct fields of records
-                    "-a" append fields to records
-                    "-ir" insert record or replace if it exists
+        :param marcxml: the XML to upload.
+        :param mode: the mode to use for the upload.
+            - "-i" insert new records
+            - "-r" replace existing records
+            - "-c" correct fields of records
+            - "-a" append fields to records
+            - "-ir" insert record or replace if it exists
         """
         if mode not in ["-i", "-r", "-c", "-a", "-ir"]:
             raise NameError("Incorrect mode " + str(mode))
 
-        params = urllib.urlencode({'file': marcxml,
-                                   'mode': mode})
-        # We don't use self.browser as batchuploader is protected by IP
-        opener = urllib2.build_opener()
-        opener.addheaders = [('User-Agent', CFG_USER_AGENT)]
-        return opener.open(self.server_url + "/batchuploader/robotupload",
-                           params)
+        return requests.post(self.server_url + "/batchuploader/robotupload",
+                             data={'file': marcxml, 'mode': mode},
+                             headers={'User-Agent': CFG_USER_AGENT})
 
     def _parse_results(self, results, cached_records):
         """
