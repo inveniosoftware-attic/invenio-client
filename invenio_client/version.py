@@ -21,26 +21,13 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
-"""Unit tests for the utils/connector."""
+"""Version information for *Invenio Client* package.
 
-from unittest import TestCase
+This file is imported by ``invenio_client.__init__``, and parsed by
+``setup.py`` as well as ``docs/conf.py``.
+"""
 
-from invenio_client import InvenioConnector, InvenioConnectorServerError
+# Do not change the format of this next line. Doing so risks breaking
+# setup.py and docs/conf.py
 
-
-class TestConnector(TestCase):
-
-    """Test function to get default values."""
-
-    def test_url_errors(self):
-        """InvenioConnector - URL errors"""
-        invalid_urls = [
-            'htp://cds.cern.ch',
-            'cds.cern.ch',
-            'http://thecerndocumentserver.cern.ch',
-            'invalidurl',
-            'http://mgfldgmdflgmdfklgmklmkdflg.com'
-        ]
-        for url in invalid_urls:
-            self.assertRaises(InvenioConnectorServerError,
-                              InvenioConnector, url)
+__version__ = "0.1.0.dev20141124"

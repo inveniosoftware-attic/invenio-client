@@ -21,26 +21,11 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
-"""Unit tests for the utils/connector."""
+"""Minimal py2/py3 compatibility support."""
 
-from unittest import TestCase
+import sys
 
-from invenio_client import InvenioConnector, InvenioConnectorServerError
-
-
-class TestConnector(TestCase):
-
-    """Test function to get default values."""
-
-    def test_url_errors(self):
-        """InvenioConnector - URL errors"""
-        invalid_urls = [
-            'htp://cds.cern.ch',
-            'cds.cern.ch',
-            'http://thecerndocumentserver.cern.ch',
-            'invalidurl',
-            'http://mgfldgmdflgmdfklgmklmkdflg.com'
-        ]
-        for url in invalid_urls:
-            self.assertRaises(InvenioConnectorServerError,
-                              InvenioConnector, url)
+if sys.version_info[0] == 3:  # pragma: no cover (Python 2/3 specific code)
+    binary_type = bytes
+else:  # pragma: no cover (Python 2/3 specific code)
+    binary_type = str
