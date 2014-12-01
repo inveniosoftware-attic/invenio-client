@@ -30,6 +30,7 @@ Contact us at `info@invenio-software.org
 <mailto:info@invenio-software.org>`_.
 
 - Adrian-Tudor Panescu <adrian.tudor.panescu@cern.ch>
+- Alejandro Avilés <aavilesd@cern.ch>
 - Alessio Deiana <alessio.deiana@cern.ch>
 - Benoit Thiell <bthiell@cfa.harvard.edu>
 - Esteban J. G. Gabancho <esteban.gabancho@cern.ch>

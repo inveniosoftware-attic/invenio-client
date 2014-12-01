@@ -89,11 +89,9 @@ API
    :members:
    :undoc-members:
 
-..
-    .. include:: ../CHANGES
+.. include:: ../CHANGES.rst
 
 .. include:: ../CONTRIBUTING.rst
-
 
 ..
     License
