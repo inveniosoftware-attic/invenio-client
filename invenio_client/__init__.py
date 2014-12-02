@@ -372,9 +372,6 @@ class Record(dict):
         else:
             return datafields
 
-    def __contains__(self, item):
-        return super(Record, self).__contains__(item)
-
     def __repr__(self):
         return "Record(" + dict.__repr__(self) + ")"
 
