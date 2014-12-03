@@ -16,7 +16,7 @@ Invenio Client
 About
 =====
 
-Tool to connect to distant Invenio servers using Invenio APIs.
+Tool to connect to remote Invenio servers using Invenio APIs.
 
 
 Installation

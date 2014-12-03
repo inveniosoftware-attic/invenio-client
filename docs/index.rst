@@ -62,7 +62,7 @@ Usage
 =====
 
 The easiest way is to use *invenio_client* directly with
-:class:`~invenio_client.InvenioConnector`.
+:class:`~invenio_client.connector.InvenioConnector`.
 
 .. code-block:: python
 
@@ -81,7 +81,7 @@ The easiest way is to use *invenio_client* directly with
 API
 ===
 
-.. automodule:: invenio_client
+.. automodule:: invenio_client.connector
    :members:
 
 .. automodule:: invenio_client.contrib.cds
