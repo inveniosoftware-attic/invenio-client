@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 #
-# This file is part of Invenio Client.
+# This file is part of Invenio-Client.
 # Copyright (C) 2014 CERN.
 #
-# Invenio Client is free software; you can redistribute it and/or
+# Invenio-Client is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 2 of the
 # License, or (at your option) any later version.
 #
-# Invenio Client is distributed in the hope that it will be useful,
+# Invenio-Client is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
@@ -21,7 +21,7 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 #
-# Invenio Client documentation build configuration file, created by
+# Invenio-Client documentation build configuration file, created by
 # sphinx-quickstart on Thu Oct 16 10:15:56 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -83,7 +83,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Invenio Client'
+project = u'Invenio-Client'
 copyright = u'2014, Invenio collaboration'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -243,7 +243,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'InvenioClient.tex', u'Invenio Client Documentation',
+  ('index', 'InvenioClient.tex', u'Invenio-Client Documentation',
    u'Invenio collaboration', 'manual'),
 ]
 
@@ -273,7 +273,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'invenioclient', u'Invenio Client Documentation',
+    ('index', 'invenioclient', u'Invenio-Client Documentation',
      [u'Invenio collaboration'], 1)
 ]
 
@@ -287,7 +287,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'InvenioClient', u'Invenio Client Documentation',
+  ('index', 'InvenioClient', u'Invenio-Client Documentation',
    u'Invenio collaboration', 'InvenioClient', 'One line description of project.',
    'Miscellaneous'),
 ]

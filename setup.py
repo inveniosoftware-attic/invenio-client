@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 #
-# This file is part of Invenio Client.
+# This file is part of Invenio-Client.
 # Copyright (C) 2014 CERN.
 #
-# Invenio Client is free software; you can redistribute it and/or
+# Invenio-Client is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 2 of the
 # License, or (at your option) any later version.
 #
-# Invenio Client is distributed in the hope that it will be useful,
+# Invenio-Client is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
@@ -78,7 +78,7 @@ setup(
     license='GPLv2',
     author='CERN',
     author_email='info@invenio-software.org',
-    description="Invenio Client permits to connect to remote Invenio digital "
+    description="Invenio-Client permits to connect to remote Invenio digital "
         "library instances.",
     long_description=__doc__,
     packages=find_packages(exclude=["tests", "docs"]),

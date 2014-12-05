@@ -1,5 +1,6 @@
-Invenio Client
-====================
+================
+ Invenio-Client
+================
 
 .. image:: https://travis-ci.org/inveniosoftware/invenio-client.png?branch=master
    :target: https://travis-ci.org/inveniosoftware/invenio-client
@@ -22,7 +23,7 @@ Tool to connect to remote Invenio servers using Invenio APIs.
 Installation
 ============
 
-Invenio Client is on PyPI so all you need is: ::
+Invenio-Client is on PyPI so all you need is: ::
 
     pip install invenio-client
 
