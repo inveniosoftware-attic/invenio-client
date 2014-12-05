@@ -78,7 +78,8 @@ setup(
     license='GPLv2',
     author='CERN',
     author_email='info@invenio-software.org',
-    description="Command line client for Invenio.",
+    description="Invenio Client permits to connect to remote Invenio digital "
+        "library instances.",
     long_description=__doc__,
     packages=find_packages(exclude=["tests", "docs"]),
     include_package_data=True,

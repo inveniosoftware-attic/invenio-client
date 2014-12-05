@@ -20,9 +20,9 @@
     granted to it by virtue of its status as an Intergovernmental Organization
     or submit itself to any jurisdiction.
 
-======================
+================
  Invenio Client
-======================
+================
 .. currentmodule:: invenio_client
 
 .. raw:: html
@@ -38,7 +38,8 @@
         </a>
     </p>
 
-Parser for Invenio and Spires syntax using *pypeg2*.
+Invenio Client is a Python library permitting to connect to remote
+`Invenio <http://invenio-software.org>`_ digital library instances.
 
 Contents
 --------

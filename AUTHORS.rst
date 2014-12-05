@@ -23,8 +23,8 @@
 Authors
 =======
 
-Invenio Client is developed to support users of `Invenio
-<http://invenio-software.org>`_ digital library software.
+Invenio Client is developed to connect to remote `Invenio
+<http://invenio-software.org>`_ digital library instances.
 
 Contact us at `info@invenio-software.org
 <mailto:info@invenio-software.org>`_.
