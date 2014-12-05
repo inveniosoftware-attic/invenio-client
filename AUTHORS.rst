@@ -32,17 +32,17 @@ Contact us at `info@invenio-software.org
 Contributors
 ^^^^^^^^^^^^
 
+- Adrian-Tudor Panescu <adrian.tudor.panescu@cern.ch>
+- Alessio Deiana <alessio.deiana@cern.ch>
+- Benoit Thiell <bthiell@cfa.harvard.edu>
+- Esteban J. G. Gabancho <esteban.gabancho@cern.ch>
 - Graham R. Armstrong <graham.richard.armstrong@cern.ch>
 - Jan Aage Lavik <jan.age.lavik@cern.ch>
 - Jerome Caffaro <jerome.caffaro@cern.ch>
-- Alessio Deiana <alessio.deiana@cern.ch>
-- Esteban J. G. Gabancho <esteban.gabancho@cern.ch>
-- Peter Halliday <phalliday@cornell.edu>
-- Samuele Kaplun <samuele.kaplun@cern.ch>
 - Jiri Kuncar <jiri.kuncar@cern.ch>
 - Krzysztof Lis <krzysztof.lis@cern.ch>
-- Thomas McCauley <thomas.mccauley@cern.ch>
-- Adrian-Tudor Panescu <adrian.tudor.panescu@cern.ch>
 - Laura Rueda <laura.rueda@cern.ch>
+- Peter Halliday <phalliday@cornell.edu>
+- Samuele Kaplun <samuele.kaplun@cern.ch>
+- Thomas McCauley <thomas.mccauley@cern.ch>
 - Tibor Simko <tibor.simko@cern.ch>
-- Benoit Thiell <bthiell@cfa.harvard.edu>
