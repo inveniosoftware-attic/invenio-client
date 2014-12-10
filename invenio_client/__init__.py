@@ -24,10 +24,12 @@
 """Python API for remote Invenio instances."""
 
 from .connector import (
-    InvenioConnector, InvenioConnectorServerError, InvenioConnectorAuthError
+    InvenioConnector, InvenioConnectorAuthError, InvenioConnectorServerError
 )
+from .version import __version__
 
-__all__ = ('InvenioConnector',
+__all__ = ('__version__',
+           'InvenioConnector',
            'InvenioConnectorServerError',
            'InvenioConnectorAuthError',
            )
