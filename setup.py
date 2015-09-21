@@ -65,10 +65,10 @@ with open(os.path.join('invenio_client', 'version.py'), 'rt') as f:
 
 tests_require = [
     'pytest-cache>=1.0',
-    'pytest-cov>=1.8.0',
+    'pytest-cov>=2.1.0',
     'pytest-pep8>=1.0.6',
-    'pytest>=2.6.1',
-    'coverage'
+    'pytest>=2.8.0',
+    'coverage>=4.0.0'
 ]
 
 setup(
