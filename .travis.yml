@@ -34,7 +34,7 @@ install:
   - pip install --upgrade pip
   - pip install check-manifest coveralls pep257
   - pip install pytest pytest-pep8 pytest-cov pytest-cache
-  - pip install -e .[docs]
+  - pip install -e .[docs,tests]
 
 script:
   - "check-manifest --ignore .travis-\\*-requirements.txt"

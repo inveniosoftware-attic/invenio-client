@@ -90,6 +90,7 @@ setup(
     ],
     extras_require={
         "docs": ["sphinx_rtd_theme"],
+        "tests": tests_require,
     },
     tests_require=tests_require,
     cmdclass={'test': PyTest},
