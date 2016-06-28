@@ -39,7 +39,7 @@
     </p>
 
 Invenio-Client is a Python library permitting to connect to remote
-`Invenio <http://invenio-software.org>`_ digital library instances.
+`Invenio <http://inveniosoftware.org>`_ digital library instances.
 
 Contents
 --------
@@ -68,7 +68,7 @@ The easiest way is to use *invenio_client* directly with
 .. code-block:: python
 
     from invenio_client import InvenioConnector
-    demo = InvenioConnector("http://demo.invenio-software.org")
+    demo = InvenioConnector("http://demo.inveniosoftware.org")
 
     results = demo.search("higgs")
 

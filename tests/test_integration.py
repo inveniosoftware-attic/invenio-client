@@ -29,8 +29,8 @@ from unittest import TestCase
 
 from invenio_client import InvenioConnector, InvenioConnectorAuthError
 
-CFG_SITE_URL = 'http://demo.invenio-software.org'
-CFG_SITE_SECURE_URL = 'https://demo.invenio-software.org'
+CFG_SITE_URL = 'http://demo.inveniosoftware.org'
+CFG_SITE_SECURE_URL = 'https://demo.inveniosoftware.org'
 
 
 class InvenioConnectorTest(TestCase):
@@ -43,7 +43,7 @@ class InvenioConnectorTest(TestCase):
         result = server.search(p='ellis', of='id')
         self.assertTrue(len(list(result)) > 0,
                         'did not get remote search results from '
-                        'http://demo.invenio-software.org')
+                        'http://demo.inveniosoftware.org')
 
     def test_search_collections(self):
         """InvenioConnector - collection search"""

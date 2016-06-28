@@ -24,10 +24,10 @@ Authors
 =======
 
 Invenio-Client is developed to connect to remote `Invenio
-<http://invenio-software.org>`_ digital library instances.
+<http://inveniosoftware.org>`_ digital library instances.
 
-Contact us at `info@invenio-software.org
-<mailto:info@invenio-software.org>`_.
+Contact us at `info@inveniosoftware.org
+<mailto:info@inveniosoftware.org>`_.
 
 - Adrian-Tudor Panescu <adrian.tudor.panescu@cern.ch>
 - Alejandro Avilés <aavilesd@cern.ch>

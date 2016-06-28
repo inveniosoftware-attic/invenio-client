@@ -77,7 +77,7 @@ setup(
     url="https://github.com/inveniosoftware/invenio-client",
     license='GPLv2',
     author='Invenio collaboration',
-    author_email='info@invenio-software.org',
+    author_email='info@inveniosoftware.org',
     description="Invenio-Client permits to connect to remote Invenio digital "
         "library instances.",
     long_description=__doc__,

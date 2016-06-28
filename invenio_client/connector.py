@@ -28,7 +28,7 @@ Example of use:
 .. code-block:: python
 
     from invenio_client import InvenioConnector
-    demo = InvenioConnector("http://demo.invenio-software.org")
+    demo = InvenioConnector("http://demo.inveniosoftware.org")
 
     results = demo.search("higgs")
 
