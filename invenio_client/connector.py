@@ -107,15 +107,11 @@ class InvenioConnector(object):
 
         :param url: the url to which this instance will be connected.
             Defaults to CFG_SITE_URL, if available.
-        :type url: string
         :param user: the optional username for interacting with the Invenio
             instance in an authenticated way.
-        :type user: string
         :param password: the corresponding password.
-        :type password: string
         :param login_method: the name of the login method the Invenio instance
             is expecting for this user (in case there is more than one).
-        :type login_method: string
         """
         assert url is not None
         self.server_url = url
