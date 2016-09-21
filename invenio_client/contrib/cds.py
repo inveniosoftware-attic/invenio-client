@@ -24,7 +24,6 @@
 """CERN Document Server specific connector."""
 
 import splinter
-
 from invenio_client import InvenioConnector
 
 

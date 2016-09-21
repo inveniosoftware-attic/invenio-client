@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio-Client.
-# Copyright (C) 2014 CERN.
+# Copyright (C) 2014, 2016 CERN.
 #
 # Invenio-Client is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -40,7 +40,6 @@ from __future__ import print_function
 import os
 import re
 import sys
-
 
 _html_theme = "sphinx_rtd_theme"
 _html_theme_path = []
@@ -229,22 +228,22 @@ htmlhelp_basename = 'InvenioClientdoc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+    # The paper size ('letterpaper' or 'a4paper').
+    #'papersize': 'letterpaper',
 
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
+    # The font size ('10pt', '11pt' or '12pt').
+    #'pointsize': '10pt',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+    # Additional stuff for the LaTeX preamble.
+    #'preamble': '',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'InvenioClient.tex', u'Invenio-Client Documentation',
-   u'Invenio collaboration', 'manual'),
+    ('index', 'InvenioClient.tex', u'Invenio-Client Documentation',
+     u'Invenio collaboration', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -287,9 +286,13 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'InvenioClient', u'Invenio-Client Documentation',
-   u'Invenio collaboration', 'InvenioClient', 'One line description of project.',
-   'Miscellaneous'),
+    ('index',
+     'InvenioClient',
+     u'Invenio-Client Documentation',
+     u'Invenio collaboration',
+     'InvenioClient',
+     'One line description of project.',
+     'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.
