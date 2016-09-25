@@ -25,7 +25,7 @@ Installation
 Documentation
 -------------
 
-   http://invenio-client.readthedocs.org/en/v0.1.0
+   http://invenio-client.readthedocs.io/en/v0.1.0
 
 Good luck and thanks for using Invenio-Client.
 

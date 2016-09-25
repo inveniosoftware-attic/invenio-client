@@ -10,8 +10,8 @@
    :target: https://pypi.python.org/pypi/invenio-client/
 .. image:: https://pypip.in/d/invenio-client/badge.png
    :target: https://pypi.python.org/pypi/invenio-client/
-.. image:: https://readthedocs.org/projects/invenio-client/badge/?version=latest
-   :target: https://invenio-client.readthedocs.org/
+.. image:: https://readthedocs.io/projects/invenio-client/badge/?version=latest
+   :target: https://invenio-client.readthedocs.io/
 
 
 About
@@ -31,7 +31,7 @@ Invenio-Client is on PyPI so all you need is: ::
 Documentation
 =============
 
-Documentation is readable at http://invenio-client.readthedocs.org or
+Documentation is readable at http://invenio-client.readthedocs.io or
 it can be built using Sphinx: ::
 
     pip install invenio-client[docs]
