@@ -60,6 +60,7 @@ import xml.sax
 
 from requests.exceptions import (ConnectionError, InvalidSchema, InvalidURL,
                                  MissingSchema, RequestException)
+from urlparse import urlparse
 
 from ._compat import binary_type
 from .version import __version__
@@ -157,7 +158,7 @@ class InvenioConnector(object):
                 "the provided credentials")
         self.cookies = self.browser.cookies.all()
 
-    def search(self, read_cache=True, ssl_verify=True, **kwparams):
+    def search(self, read_cache=True, ssl_verify=True, recid=None, **kwparams):
         """
         Returns records corresponding to the given search query.
 
@@ -175,9 +176,20 @@ class InvenioConnector(object):
 
         if cache_key not in self.cached_queries or \
                 not read_cache:
-            results = requests.get(self.server_url + "/search",
-                                   params=params, cookies=self.cookies,
-                                   stream=True, verify=ssl_verify)
+            if recid:
+                results = requests.get(self.server_url + '/record/' + recid,
+                                       params=params, cookies=self.cookies,
+                                       stream=True, verify=ssl_verify,
+                                       allow_redirects=True)
+                if results.history:
+                    new_recid = urlparse(results.url).path.split('/')[-1]
+                    raise InvenioConnectorServerError('The record has been'
+                                                      'merged with recid ' +
+                                                      new_recid)
+            else:
+                results = requests.get(self.server_url + "/search",
+                                       params=params, cookies=self.cookies,
+                                       stream=True, verify=ssl_verify)
             if 'youraccount/login' in results.url:
                 # Current user not able to search collection
                 raise InvenioConnectorAuthError(
@@ -206,9 +218,9 @@ class InvenioConnector(object):
                 try:
                     if isinstance(res, binary_type):
                         # Transform to list
-                        res = [int(recid.strip()) for recid in
+                        res = [int(recid.strip()) for record_id in
                                res.decode('utf-8').strip("[]").split(",")
-                               if recid.strip() != ""]
+                               if record_id.strip() != ""]
                     res.reverse()
                 except (ValueError, AttributeError):
                     res = []
@@ -281,7 +293,7 @@ class InvenioConnector(object):
         if recid in self.cached_records or not read_cache:
             return self.cached_records[recid]
         else:
-            return self.search(p="recid:" + str(recid))
+            return self.search(recid=str(recid))
 
     def upload_marcxml(self, marcxml, mode):
         """Upload a record to the server.
