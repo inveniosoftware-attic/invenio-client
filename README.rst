@@ -6,9 +6,9 @@
    :target: https://travis-ci.org/inveniosoftware/invenio-client
 .. image:: https://coveralls.io/repos/inveniosoftware/invenio-client/badge.png?branch=master
    :target: https://coveralls.io/r/inveniosoftware/invenio-client
-.. image:: https://pypip.in/v/invenio-client/badge.png
+.. image:: https://img.shields.io/pypi/v/invenio-client.svg
    :target: https://pypi.python.org/pypi/invenio-client/
-.. image:: https://pypip.in/d/invenio-client/badge.png
+.. image:: https://img.shields.io/pypi/dm/invenio-client.svg
    :target: https://pypi.python.org/pypi/invenio-client/
 .. image:: https://readthedocs.io/projects/invenio-client/badge/?version=latest
    :target: https://invenio-client.readthedocs.io/
