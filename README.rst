@@ -2,17 +2,11 @@
  Invenio-Client
 ================
 
-.. image:: https://travis-ci.org/inveniosoftware/invenio-client.png?branch=master
-   :target: https://travis-ci.org/inveniosoftware/invenio-client
-.. image:: https://coveralls.io/repos/inveniosoftware/invenio-client/badge.png?branch=master
-   :target: https://coveralls.io/r/inveniosoftware/invenio-client
-.. image:: https://pypip.in/v/invenio-client/badge.png
-   :target: https://pypi.python.org/pypi/invenio-client/
-.. image:: https://pypip.in/d/invenio-client/badge.png
-   :target: https://pypi.python.org/pypi/invenio-client/
-.. image:: https://readthedocs.io/projects/invenio-client/badge/?version=latest
-   :target: https://invenio-client.readthedocs.io/
+Deprecated
+==========
 
+This repository is unmaintained, deprecated and not working with recent versions
+of Invenio.
 
 About
 =====
